@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sammy Verdam | Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+  <!-- LOADING SCREEN -->
+<div id="loader">
+  <div class="glitch loader-text" id="bootText" data-text="INITIALIZING WEBSITE">
+    INITIALIZING WEBSITE
+  </div>
+  <div class="progress-bar">
+    <div id="progressFill"></div>
+  </div>
+</div>
+
+  <nav>
+    <button onclick="showTab('home')">HOME</button>
+    <button onclick="showTab('projects')">PROJECTS</button>
+  </nav>
+
+  <header>
+    <h1 class="glitch" data-text="WELCOME">WELCOME</h1>
+  </header>
+
+  <main>
+
+    <!-- HOME TAB -->
+    <div id="home" class="tab active">
+
+      <section>
+        <h2>About Me</h2>
+        <p>
+          My name is Sammy Verdam. I’m 18 years old and a student at
+          <strong>Media College Amsterdam</strong>, studying
+          <strong>Software Development</strong>.
+          <br><br>
+          I’m currently learning <strong>Unity</strong> and <strong>C#</strong>,
+          working on my first game project with two friends.
+        </p>
+      </section>
+
+      <!-- SPECIALTIES SECTION -->
+      <section>
+        <h2>specialties</h2>
+        <div class="specialties">
+          <div class="skill">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg" alt="Unity">
+            <p>Unity Engine</p>
+          </div>
+          <div class="skill">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#">
+            <p>C# Programming</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Current Project — RE-CLEAN</h2>
+        <div class="gif-container">
+          <img src="493916714-f3808f2c-7415-40c7-8129-4f6713dbb4a7.gif" alt="RE-CLEAN">
+        </div>
+        <p>
+          RE-CLEAN is a co-op survival horror game in development.
+          <br><br>
+          My role focuses on:
+          <br>• Game design
+          <br>• Core game loop
+          <br>• Player experience
+          <br><br>
+          Steam page coming soon.
+        </p>
+      </section>
+
+      <section>
+        <h2>Contact</h2>
+        <ul>
+          <li><a href="https://x.com/Ymmas1968Y" target="_blank">Twitter</a></li>
+          <li><a href="https://www.instagram.com/ymmas1968_" target="_blank">Instagram</a></li>
+          <li><a href="https://github.com/Ymmas1968" target="_blank">GitHub</a></li>
+          <li><a href="mailto:frnkverdam@gmail.com">Email: frnkverdam@gmail.com</a></li>
+          <li>Discord: ymmas1968</li>
+        </ul>
+      </section>
+
+    </div>
+
+    <!-- PROJECTS TAB -->
+    <div id="projects" class="tab">
+      <section>
+        <h2>RE-CLEAN — Detailed Overview</h2>
+        <p>
+          A co-op survival horror experience focused on tension, limited resources,
+          and teamwork.
+          <br><br>
+          <strong>Tech Stack:</strong>
+          <br>Unity · C# · Git
+        </p>
+      </section>
+
+        <section>
+  <h2>Hell and Strife</h2>
+  <p>
+    A first-person shooter set in the frozen underworld of Hel,
+    inspired by Norse mythology.
+    <br><br>
+    Players fight cursed warriors, ancient spirits,
+    and mythological horrors while uncovering the
+    secrets of the realm of the dead.
+    <br><br>
+    <strong>Genre:</strong> First-Person Shooter  
+    <br><strong>Theme:</strong> Norse Mythology · Dark Fantasy  
+    <br><strong>Engine:</strong> Unity  
+    <br><strong>Language:</strong> C#
+  </p>
+</section>
+
+     
+    </div>
+
+  </main>
+
+  <footer>© 2026 Sammy Verdam</footer>
+
+   <script>
+  function showTab(tabId) {
+    document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  // ================= LOADER SYSTEM =================
+
+  const bootMessages = [
+    "INITIALIZING WEBSITE",
+    "LOADING SYSTEM FILES",
+    "CONNECTING TO MAINFRAME",
+    "BOOTING INTERFACE"
+  ];
+
+  document.body.classList.add("loading");
+
+  window.addEventListener("load", () => {
+    const bootText = document.getElementById("bootText");
+    const progressFill = document.getElementById("progressFill");
+    const loader = document.getElementById("loader");
+
+    let progress = 0;
+    let messageIndex = 0;
+
+    const interval = setInterval(() => {
+      progress += Math.random() * 15;
+      if (progress >= 100) progress = 100;
+
+      progressFill.style.width = progress + "%";
+
+      if (progress % 30 < 5) {
+        messageIndex = (messageIndex + 1) % bootMessages.length;
+        bootText.textContent = bootMessages[messageIndex];
+        bootText.setAttribute("data-text", bootMessages[messageIndex]);
+      }
+
+      if (progress === 100) {
+        clearInterval(interval);
+        setTimeout(() => {
+          loader.style.opacity = "0";
+          loader.style.transition = "opacity 1s ease";
+          setTimeout(() => {
+            loader.style.display = "none";
+            document.body.classList.remove("loading");
+
+            document.body.style.opacity = 0;
+            document.body.style.transition = "opacity 1.2s ease";
+            document.body.style.opacity = 1;
+          }, 1000);
+        }, 500);
+      }
+    }, 200);
+  });
+</script>
+
+</body>
+</html>

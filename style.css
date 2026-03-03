@@ -1,0 +1,311 @@
+
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    :root {
+      --green: #00ff88;
+      --bg: #000;
+      --glitch1: #ff0066;
+      --glitch2: #00fff0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--green);
+      font-family: 'Press Start 2P', monospace;
+      line-height: 1.6;
+      padding: 0 12px;
+      overflow-x: hidden;
+    }
+
+    /* Animated Retro Grid Background */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at center, rgba(0,255,136,0.08) 0%, transparent 60%),
+    linear-gradient(rgba(0,255,136,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,136,0.05) 1px, transparent 1px);
+  background-size:
+    100% 100%,
+    40px 40px,
+    40px 40px;
+  animation: gridMove 20s linear infinite, glowPulse 6s ease-in-out infinite;
+}
+
+/* Moving Grid Animation */
+@keyframes gridMove {
+  0% {
+    background-position:
+      center,
+      0 0,
+      0 0;
+  }
+  100% {
+    background-position:
+      center,
+      0 40px,
+      40px 0;
+  }
+}
+
+/* Subtle Neon Pulse */
+@keyframes glowPulse {
+  0%, 100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.25);
+  }
+}
+
+
+    /* CRT overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        rgba(0,0,0,0) 0px,
+        rgba(0,0,0,0) 1px,
+        rgba(0,0,0,0.1) 2px
+      );
+      pointer-events: none;
+      z-index: 999;
+      mix-blend-mode: overlay;
+      animation: flicker 0.1s infinite;
+    }
+
+    @keyframes flicker {
+      0%, 100% { opacity: 0.98; }
+      50% { opacity: 0.6; }
+    }
+
+    /* NAVBAR */
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--green);
+      margin-bottom: 40px;
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      color: var(--green);
+      font-family: inherit;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    nav button:hover {
+      color: var(--glitch1);
+      text-shadow: 0 0 8px var(--glitch1);
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 0;
+    }
+
+    .glitch {
+      position: relative;
+      display: inline-block;
+      font-size: 26px;
+      text-transform: uppercase;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+    }
+
+    .glitch::before {
+      text-shadow: -2px 0 var(--glitch1);
+      animation: glitch 1s infinite alternate-reverse;
+    }
+
+    .glitch::after {
+      text-shadow: 2px 0 var(--glitch2);
+      animation: glitch 1s infinite alternate;
+    }
+
+    @keyframes glitch {
+      0% { clip-path: inset(0 0 90% 0); }
+      50% { clip-path: inset(40% 0 20% 0); }
+      100% { clip-path: inset(0 0 0 0); }
+    }
+
+    main {
+      max-width: 850px;
+      margin: auto;
+    }
+
+    section {
+      margin: 60px 0;
+      padding: 30px;
+      border: 1px solid var(--green);
+      background: rgba(0,255,136,0.03);
+      box-shadow: 0 0 25px rgba(0,255,136,0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    section:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 40px rgba(0,255,136,0.3);
+    }
+
+    h2 {
+      font-size: 14px;
+      margin-bottom: 15px;
+      border-bottom: 2px solid var(--green);
+      display: inline-block;
+      padding-bottom: 4px;
+    }
+
+    p, li {
+      font-size: 11px;
+      color: #cfcfcf;
+    }
+
+    /* SPECIALTIES */
+    .specialties {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .skill {
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .skill img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 15px;
+      filter: grayscale(100%) brightness(1.2);
+      transition: filter 0.3s ease, transform 0.3s ease;
+    }
+
+    .skill:hover img {
+      filter: grayscale(0%) brightness(1.5);
+      transform: scale(1.1);
+    }
+
+    .skill:hover {
+      transform: translateY(-5px);
+      text-shadow: 0 0 12px var(--green);
+    }
+
+    .gif-container {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .gif-container img {
+      max-width: 100%;
+      border: 2px solid var(--green);
+    }
+
+    ul {
+      list-style: none;
+      margin-top: 10px;
+    }
+
+    li {
+      margin: 8px 0;
+    }
+
+    a {
+      color: var(--green);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--glitch1);
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      font-size: 9px;
+      color: #777;
+    }
+
+    /* Tabs */
+    .tab {
+      display: none;
+      animation: fade 0.5s ease forwards;
+    }
+
+    .tab.active {
+      display: block;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* ================= LOADER ================= */
+
+#loader {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5000;
+  flex-direction: column;
+}
+
+.loader-text {
+  font-size: 18px;
+  margin-bottom: 30px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.progress-bar {
+  width: 300px;
+  height: 10px;
+  border: 2px solid var(--green);
+  overflow: hidden;
+}
+
+#progressFill {
+  height: 100%;
+  width: 0%;
+  background: var(--green);
+  box-shadow: 0 0 10px var(--green);
+  transition: width 0.2s ease;
+}
+
+body.loading nav,
+body.loading header,
+body.loading main,
+body.loading footer {
+  visibility: hidden;
+}
+  

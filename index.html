@@ -26,7 +26,7 @@
   </nav>
 
   <header>
-    <h1 class="glitch" data-text="WELCOME">WELCOME</h1>
+    <h1 id="pageTitle" class="glitch" data-text="WELCOME">WELCOME</h1>
   </header>
 
   <main>
@@ -92,32 +92,38 @@
     </div>
 
     <!-- PROJECTS TAB -->
+     <H1></H1>
     <div id="projects" class="tab">
-      <section>
-        <h2>RE-CLEAN — Detailed Overview</h2>
-        <p>
-          A co-op survival horror experience focused on tension, limited resources,
-          and teamwork.
-          <br><br>
-          <img src="493916714-f3808f2c-7415-40c7-8129-4f6713dbb4a7.gif" alt="RE-CLEAN">
-          <br><br>
-          <strong>Tech Stack:</strong>
-          <br>Unity · C# · Git
-        </p>
-      </section>
+      <a href="reclean.html">
+  <section>
+    <h2>RE-CLEAN — Detailed Overview</h2>
+    <p>
+      A co-op survival horror experience focused on tension, limited resources,
+      and teamwork.
+      <br><br>
+      <img src="493916714-f3808f2c-7415-40c7-8129-4f6713dbb4a7.gif" alt="RE-CLEAN">
+      <br><br>
+      <strong>Tech Stack:</strong>
+      <br>Unity · C# · Git
+    </p>
+  </section>
+  </a>
+  </section>
 
-        <section>
-  <h2>Hell and Strife</h2>
-  <p>
-    A first-person shooter set in the frozen underworld of Hel,
-    inspired by Norse mythology.
-    <br><br>
+<a href="hell-and-strife.html">
+  <section>
+    <h2>Hell and Strife</h2>
+    <p>
+      A first-person shooter set in the frozen underworld of Hel,
+      inspired by Norse mythology.
+      <br><br>
       <img src="Schermafbeelding 2026-03-04 111656.png" alt="Hell">
-    <br><br>
-    <strong>Tech Stack:</strong>
-          <br>Unity · C# · Git
-  </p>
-</section>
+      <br><br>
+      <strong>Tech Stack:</strong>
+      <br>Unity · C# · Git
+    </p>
+  </section>
+</a>
 
      
     </div>
@@ -126,61 +132,83 @@
 
   <footer>© 2026 Sammy Verdam</footer>
 
-   <script>
-  function showTab(tabId) {
-    document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-    document.getElementById(tabId).classList.add('active');
-    window.scrollTo(0, 0);
+  <script>
+ function showTab(tabId) {
+  document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+
+  const title = document.getElementById("pageTitle");
+
+  if (tabId === "home") {
+    title.textContent = "WELCOME";
+    title.setAttribute("data-text", "WELCOME");
+  } else if (tabId === "projects") {
+    title.textContent = "PROJECTS";
+    title.setAttribute("data-text", "PROJECTS");
   }
+
+  window.scrollTo(0, 0);
+}
 
   // ================= LOADER SYSTEM =================
 
-  const bootMessages = [
-    "INITIALIZING WEBSITE",
-    "LOADING SYSTEM FILES",
-    "CONNECTING TO MAINFRAME",
-    "BOOTING INTERFACE"
-  ];
+  // Check if loader already played
+  if (sessionStorage.getItem("loaderPlayed")) {
+    document.getElementById("loader").style.display = "none";
+    document.body.classList.remove("loading");
+  } else {
 
-  document.body.classList.add("loading");
+    const bootMessages = [
+      "INITIALIZING WEBSITE",
+      "LOADING SYSTEM FILES",
+      "CONNECTING TO MAINFRAME",
+      "BOOTING INTERFACE"
+    ];
 
-  window.addEventListener("load", () => {
-    const bootText = document.getElementById("bootText");
-    const progressFill = document.getElementById("progressFill");
-    const loader = document.getElementById("loader");
+    document.body.classList.add("loading");
 
-    let progress = 0;
-    let messageIndex = 0;
+    window.addEventListener("load", () => {
+      const bootText = document.getElementById("bootText");
+      const progressFill = document.getElementById("progressFill");
+      const loader = document.getElementById("loader");
 
-    const interval = setInterval(() => {
-      progress += Math.random() * 15;
-      if (progress >= 100) progress = 100;
+      let progress = 0;
+      let messageIndex = 0;
 
-      progressFill.style.width = progress + "%";
+      const interval = setInterval(() => {
+        progress += Math.random() * 15;
+        if (progress >= 100) progress = 100;
 
-      if (progress % 30 < 5) {
-        messageIndex = (messageIndex + 1) % bootMessages.length;
-        bootText.textContent = bootMessages[messageIndex];
-        bootText.setAttribute("data-text", bootMessages[messageIndex]);
-      }
+        progressFill.style.width = progress + "%";
 
-      if (progress === 100) {
-        clearInterval(interval);
-        setTimeout(() => {
-          loader.style.opacity = "0";
-          loader.style.transition = "opacity 1s ease";
+        if (progress % 30 < 5) {
+          messageIndex = (messageIndex + 1) % bootMessages.length;
+          bootText.textContent = bootMessages[messageIndex];
+          bootText.setAttribute("data-text", bootMessages[messageIndex]);
+        }
+
+        if (progress === 100) {
+          clearInterval(interval);
+
+          sessionStorage.setItem("loaderPlayed", "true");
+
           setTimeout(() => {
-            loader.style.display = "none";
-            document.body.classList.remove("loading");
+            loader.style.opacity = "0";
+            loader.style.transition = "opacity 1s ease";
 
-            document.body.style.opacity = 0;
-            document.body.style.transition = "opacity 1.2s ease";
-            document.body.style.opacity = 1;
-          }, 1000);
-        }, 500);
-      }
-    }, 200);
-  });
+            setTimeout(() => {
+              loader.style.display = "none";
+              document.body.classList.remove("loading");
+
+              document.body.style.opacity = 0;
+              document.body.style.transition = "opacity 1.2s ease";
+              document.body.style.opacity = 1;
+            }, 1000);
+          }, 500);
+        }
+      }, 200);
+    });
+  }
 </script>
 
 </body>

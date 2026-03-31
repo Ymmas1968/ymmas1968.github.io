@@ -10,8 +10,19 @@
 <body>
 
 <nav>
-  <button onclick="window.location.href='index.html'">← BACK</button>
+  <button onclick="goBack()" style="background: none; border: none; cursor: pointer; color: white;">← BACK</button>
 </nav>
+<script>
+function goBack() {
+  const returnTo = sessionStorage.getItem('returnTo');
+  
+  if (returnTo === 'portfolio') {
+    window.location.href = 'portfolio.html?tab=projects';
+  } else {
+    window.location.href = 'index.html';
+  }
+}
+</script>
 
 <header>
   <h1 class="glitch" data-text="HELL AND STRIFE">HELL AND STRIFE</h1>

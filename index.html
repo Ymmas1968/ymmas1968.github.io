@@ -15,6 +15,59 @@
       overflow-x: hidden;
     }
 
+    .hero-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      width: 90%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      flex: 1 1 320px;
+      min-width: 280px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero-text {
+      flex: 1;
+    }
+
+    .enter-btn {
+      width: fit-content;
+      padding: 14px 28px;
+      font-size: 1rem;
+      border: 1px solid white;
+      background: transparent;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s ease;
+      text-decoration: none;
+      align-self: center;
+    }
+
+    .about-image {
+      width: 300px;
+      min-width: 260px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 2px solid #00ff88;
+      flex-shrink: 0;
+    }
+
+    .about-image img {
+      width: 100%;
+      display: block;
+      height: auto;
+    }
+
     /* Animated Retro Grid Background */
     body::after {
       content: "";
@@ -210,17 +263,27 @@
 <body>
 
   <section class="hero">
-    <h1 class="name glitch" data-text="SAMMY VERDAM">
-      SAMMY VERDAM
-    </h1>
+    <div class="hero-header">
+      <div class="hero-left">
+        <div class="hero-text">
+          <h1 class="name">
+            SAMMY VERDAM
+          </h1>
 
-    <p class="title">
-      Software Developer • Unity Developer • Game Designer
-    </p>
+          <p class="title">
+            Software Developer • Unity Developer • Game Designer
+          </p>
+        </div>
 
-    <a href="portfolio.html" class="enter-btn" onclick="enterSite(); return false;">
-    ENTER SITE
-  </a>
+        <a href="portfolio.html" class="enter-btn" onclick="enterSite(); return false;">
+          ENTER SITE
+        </a>
+      </div>
+
+      <div class="about-image">
+        <img src="me.png" alt="Sammy Verdam">
+      </div>
+    </div>
 
   <script>
   function enterSite() {
